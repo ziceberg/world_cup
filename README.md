@@ -152,34 +152,63 @@ pry(main)> world_cup.active_players_by_position(:forward)
 
 ## Iteration 4
 
-Add an `all_players` method to your `WorldCup` class. This method should return a string with all players listed by position. Each position should be listed alphabetically, capitalized and pluralized. For instance, if a player has the position `:forward`, your output should list `Forwards`. Under each position, you should list the names of each player for that position in alphabetical order. You are not allowed to assume that you will only have `:defender`, `:midfielder`, and `:forward` positions. For instance, your `all_players` method should handle a player with the position `:goalkeeper`. The output should be formatted like this:
-
-```
-Defenders
-  - Domagoj Vida
-
-Forwards
-  - Antoine Griezmann
-  - Ivan Perisic
-  - Kylian Mbappe
-
-Midfielders
-  - Luka Modric
-  - Paul Pogba
-```
-
-Assuming the same setup from the previous iterations, the `WorldCup` class should now follow this interaction pattern:
+Use TDD to update your WorldCup class so that it responds to the following interaction pattern:
 
 ```ruby
-pry(main)> world_cup.all_players
-#=> "Defenders\n\t- Domagoj Vida\n\nForwards\n\t- Antoine Griezmann\n\t- Ivan Perisic\n\t- Kylian Mbappe\n\nMidfielders\n\t- Luka Modric\n\t- Paul Pogba"
-```
+pry(main)> require './lib/player'
+# => true
 
-Additionally, this method should take an optional boolean argument. If it is true, this method should only list active players. The `WorldCup` class should follow this interaction pattern:
+pry(main)> require './lib/team'
+# => true
 
-```ruby
-pry(main)> croatia.eliminated = true
-#=> true
-pry(main)> world_cup.all_players(true)
-#=> "Forwards\n\t- Antoine Griezmann\n\t- Kylian Mbappe\n\nMidfielders\n\t- Paul Pogba"
+pry(main)> require './lib/world_cup'
+# => true
+
+pry(main)> mbappe = Player.new("Kylian Mbappe", :forward)
+# => #<Player:0x00007ff1160f9c40...>
+
+pry(main)> griezmann = Player.new("Antoine Griezmann", :forward)
+# => #<Player:0x00007ff11690db48...>
+
+pry(main)> pogba = Player.new("Paul Pogba", :midfielder)
+# => #<Player:0x00007ff1168cca08...>
+
+pry(main)> france = Team.new("France")
+# => #<Team:0x00007ff1158981a0...>
+
+pry(main)> france.add_player(mbappe)    
+
+pry(main)> france.add_player(griezmann)    
+
+pry(main)> france.add_player(pogba)    
+
+pry(main)> modric = Player.new("Luka Modric", :midfielder)
+# => #<Player:0x00007ff116102688...>
+
+pry(main)> perisic = Player.new("Ivan Perisic", :forward)    
+# => #<Player:0x00007ff1160c2358...>
+
+pry(main)> vida = Player.new("Domagoj Vida", :defender)    
+# => #<Player:0x00007ff11590da68...>
+
+pry(main)> croatia = Team.new("Croatia")
+# => #<Team:0x00007ff1159db030...>
+
+pry(main)> croatia.add_player(modric)    
+
+pry(main)> croatia.add_player(perisic)    
+
+pry(main)> croatia.add_player(vida)    
+
+pry(main)> world_cup = WorldCup.new(2018, [france, croatia])    
+# => #<WorldCup:0x00007ff116142ad0...>
+
+pry(main)> world_cup.all_players_by_position
+# =>
+# {
+#   :forward=> [#<Player:0x00007ff1160f9c40...>, #<Player:0x00007ff11690db48...>, <Player:0x00007ff1160c2358...>],
+#  :midfielder=>
+#   [#<Player:0x00007ff1168cca08...>, #<Player:0x00007ff116102688...>],
+#  :defender=>[#<Player:0x00007ff11590da68...>]
+# }
 ```
