@@ -53,7 +53,6 @@ pry(main)> france.eliminated?
 #=> false
 
 pry(main)> france.eliminated = true
-#=> true
 
 pry(main)> france.eliminated?
 #=> true
@@ -68,13 +67,10 @@ pry(main)> pogba = Player.new("Paul Pogba", :midfielder)
 #=> #<Player:0x00007feab71546f0...>
 
 pry(main)> france.add_player(mbappe)
-#=> [#<Player:0x00007feab803f688...>]
 
 pry(main)> france.add_player(griezmann)
-#=> [#<Player:0x00007feab803f688...>, #<Player:0x00007feab7877a18...>]
 
 pry(main)> france.add_player(pogba)
-#=> [#<Player:0x00007feab803f688...>, #<Player:0x00007feab7877a18...>, #<Player:0x00007feab71546f0...>]
 
 pry(main)> france.players
 #=> [#<Player:0x00007feab803f688...>, #<Player:0x00007feab7877a18...>, #<Player:0x00007feab71546f0...>]
@@ -91,7 +87,6 @@ pry(main)> france.players_by_position(:forward)
 Use TDD to create a `WorldCup` class that responds to the following interaction pattern. For the `active_players_by_position` method, an active player is a player that is on a team that is not eliminated.
 
 ```ruby
-
 pry(main)> require './lib/world_cup'
 #=> true
 
@@ -114,13 +109,10 @@ pry(main)> pogba = Player.new("Paul Pogba", :midfielder)
 #=> #<Player:0x00007feab71546f0...>
 
 pry(main)> france.add_player(mbappe)
-#=> [#<Player:0x00007feab803f688...>]
 
 pry(main)> france.add_player(griezmann)
-#=> [#<Player:0x00007feab803f688...>, #<Player:0x00007feab7877a18...>]
 
 pry(main)> france.add_player(pogba)
-#=> [#<Player:0x00007feab803f688...>, #<Player:0x00007feab7877a18...>, #<Player:0x00007feab71546f0...>]
 
 pry(main)> croatia = Team.new("Croatia")
 #=> #<Team:0x00007fce3c0b83c8...>
@@ -135,13 +127,10 @@ pry(main)> vida = Player.new("Domagoj Vida", :defender)
 #=> #<Player:0x00007fce3bb69b10...>
 
 pry(main)> croatia.add_player(modric)
-#=> [#<Player:0x00007fce3b996450...>]
 
 pry(main)> croatia.add_player(perisic)
-#=> [#<Player:0x00007fce3b996450...>, #<Player:0x00007fce3d0891f8...>]
 
 pry(main)> croatia.add_player(vida)
-#=> [#<Player:0x00007fce3b996450...>, #<Player:0x00007fce3d0891f8...>, #<Player:0x00007fce3bb69b10...>]
 
 pry(main)> world_cup = WorldCup.new(2018, [france, croatia])
 #=> #<WorldCup:0x00007fce3b908858...>
@@ -156,7 +145,6 @@ pry(main)> world_cup.active_players_by_position(:forward)
 #=> [#<Player:0x00007feab803f688...>, #<Player:0x00007feab7877a18...>, #<Player:0x00007fce3d0891f8...>]
 
 pry(main)> croatia.eliminated = true
-#=> true
 
 pry(main)> world_cup.active_players_by_position(:forward)
 #=> [#<Player:0x00007feab803f688...>, #<Player:0x00007feab7877a18...>]
