@@ -206,7 +206,7 @@ pry(main)> world_cup = WorldCup.new(2018, [france, croatia])
 pry(main)> world_cup.all_players_by_position
 # =>
 # {
-#  :forward=> [#<Player:0x00007ff1160f9c40...>, #<Player:0x00007ff11690db48...>, <Player:0x00007ff1160c2358...>],
+#  :forward => [#<Player:0x00007ff1160f9c40...>, #<Player:0x00007ff11690db48...>, <Player:0x00007ff1160c2358...>],
 #  :midfielder => [#<Player:0x00007ff1168cca08...>, #<Player:0x00007ff116102688...>],
 #  :defender => [#<Player:0x00007ff11590da68...>]
 # }
