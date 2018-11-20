@@ -14,18 +14,17 @@
 Use TDD to create a `Player` class that responds to the following interaction pattern:
 
 ```ruby
-
 pry(main)> require './lib/player'
-#=> true
+# => true
 
-pry(main)> pogba = Player.new("Paul Pogba", :midfielder)
-#=> #<Player:0x00007fbcc131d2d0...>
+pry(main)> player = Player.new({name: "Luka Modric", position: "midfielder"})    
+# => #<Player:0x00007fd8273d21e0...>
 
-pry(main)> pogba.name
-#=> "Paul Pogba"
+pry(main)> player.name
+# => "Luka Modric"
 
-pry(main)> pogba.position
-#=> :midfielder
+pry(main)> player.position
+# => "midfielder"
 ```
 
 ## Iteration 2
@@ -33,53 +32,47 @@ pry(main)> pogba.position
 Use TDD to create a `Team` class that responds to the following interaction pattern:
 
 ```ruby
-
 pry(main)> require './lib/team'
-#=> true
+# => true
 
 pry(main)> require './lib/player'
-#=> true
+# => true
 
-pry(main)> france = Team.new("France")
-#=> #<Team:0x00007feab6adeca8...>
+pry(main)> team = Team.new("France")    
+# => #<Team:0x00007fe0d0335d48...>
 
-pry(main)> france.country
-#=> "France"
+pry(main)> team.country
+# => "France"
 
-pry(main)> france.players
-#=> []
+pry(main)> team.eliminated?
+# => false
 
-pry(main)> france.eliminated?
-#=> false
+pry(main)> team.eliminated = true
 
-pry(main)> france.eliminated = true
+pry(main)> team.eliminated?
+# => true
 
-pry(main)> france.eliminated?
-#=> true
+pry(main)> team.players
+# => []
 
-pry(main)> mbappe = Player.new("Kylian Mbappe", :forward)
-#=> #<Player:0x00007feab803f688...>
+pry(main)> mbappe = Player.new({name: "Kylian Mbappe", position: "forward"})
+# => #<Player:0x00007fe0d02bd280...>
 
-pry(main)> griezmann = Player.new("Antoine Griezmann", :forward)
-#=> #<Player:0x00007feab7877a18...>
+pry(main)> pogba = Player.new({name: "Paul Pogba", position: "midfielder"})    
+# => #<Player:0x00007fe0d0851138...>
 
-pry(main)> pogba = Player.new("Paul Pogba", :midfielder)
-#=> #<Player:0x00007feab71546f0...>
+pry(main)> team.add_player(mbappe)
 
-pry(main)> france.add_player(mbappe)
+pry(main)> team.add_player(pogba)    
 
-pry(main)> france.add_player(griezmann)
+pry(main)> team.players
+# => [#<Player:0x00007fe0d02bd280...>, #<Player:0x00007fe0d0851138...>]
 
-pry(main)> france.add_player(pogba)
+pry(main)> team.players_by_position("midfielder")
+# => [#<Player:0x00007fe0d0851138...>]
 
-pry(main)> france.players
-#=> [#<Player:0x00007feab803f688...>, #<Player:0x00007feab7877a18...>, #<Player:0x00007feab71546f0...>]
-
-pry(main)> france.players_by_position(:midfielder)
-#=> [#<Player:0x00007feab71546f0...>]
-
-pry(main)> france.players_by_position(:forward)
-#=> [#<Player:0x00007feab803f688...>, #<Player:0x00007feab7877a18...>]
+pry(main)> team.players_by_position("defender")
+# => []
 ```
 
 ## Iteration 3
@@ -88,66 +81,56 @@ Use TDD to create a `WorldCup` class that responds to the following interaction 
 
 ```ruby
 pry(main)> require './lib/world_cup'
-#=> true
+# => true
 
 pry(main)> require './lib/team'
-#=> true
+# => true
 
 pry(main)> require './lib/player'
-#=> true
+# => true
 
 pry(main)> france = Team.new("France")
-#=> #<Team:0x00007feab6adeca8...>
+# => #<Team:0x00007f936a313698...>
 
-pry(main)> mbappe = Player.new("Kylian Mbappe", :forward)
-#=> #<Player:0x00007feab803f688...>
+pry(main)> mbappe = Player.new({name: "Kylian Mbappe", position: "forward"})    
+# => #<Player:0x00007f936a9168b0...>
 
-pry(main)> griezmann = Player.new("Antoine Griezmann", :forward)
-#=> #<Player:0x00007feab7877a18...>
+pry(main)> pogba = Player.new({name: "Paul Pogba", position: "midfielder"})    
+# => #<Player:0x00007f936c035eb0...>
 
-pry(main)> pogba = Player.new("Paul Pogba", :midfielder)
-#=> #<Player:0x00007feab71546f0...>
+pry(main)> france.add_player(mbappe)    
 
-pry(main)> france.add_player(mbappe)
+pry(main)> france.add_player(pogba)    
 
-pry(main)> france.add_player(griezmann)
+pry(main)> croatia = Team.new("Croatia")    
+# => #<Team:0x00007f936a3afea8...>
 
-pry(main)> france.add_player(pogba)
+pry(main)> modric = Player.new({name: "Luka Modric", position: "midfielder"})    
+# => #<Player:0x00007f936a3595f8...>
 
-pry(main)> croatia = Team.new("Croatia")
-#=> #<Team:0x00007fce3c0b83c8...>
+pry(main)> vida = Player.new({name: "Domagoj Vida", position: "defender"})    
+# => #<Player:0x00007f936a318f08...>
 
-pry(main)> modric = Player.new("Luka Modric", :midfielder)
-#=> #<Player:0x00007fce3b996450...>
+pry(main)> croatia.add_player(modric)    
 
-pry(main)> perisic = Player.new("Ivan Perisic", :forward)
-#=> #<Player:0x00007fce3d0891f8...>
+pry(main)> croatia.add_player(vida)    
 
-pry(main)> vida = Player.new("Domagoj Vida", :defender)
-#=> #<Player:0x00007fce3bb69b10...>
-
-pry(main)> croatia.add_player(modric)
-
-pry(main)> croatia.add_player(perisic)
-
-pry(main)> croatia.add_player(vida)
-
-pry(main)> world_cup = WorldCup.new(2018, [france, croatia])
-#=> #<WorldCup:0x00007fce3b908858...>
+pry(main)> world_cup = WorldCup.new(2018, [france, croatia])    
+# => #<WorldCup:0x00007f936a010d10...>
 
 pry(main)> world_cup.year
-#=> 2018
+# => 2018
 
 pry(main)> world_cup.teams
-#=> [#<Team:0x00007fce3c091f70...>, #<Team:0x00007fce3c0b83c8...>
+# => [#<Team:0x00007f936a313698...>, #<Team:0x00007f936a3afea8...>]
 
-pry(main)> world_cup.active_players_by_position(:forward)
-#=> [#<Player:0x00007feab803f688...>, #<Player:0x00007feab7877a18...>, #<Player:0x00007fce3d0891f8...>]
+pry(main)> world_cup.active_players_by_position("midfielder")
+# => [#<Player:0x00007f936c035eb0...>, #<Player:0x00007f936a3595f8...>]
 
-pry(main)> croatia.eliminated = true
+pry(main)> croatia.eliminated = true    
 
-pry(main)> world_cup.active_players_by_position(:forward)
-#=> [#<Player:0x00007feab803f688...>, #<Player:0x00007feab7877a18...>]
+pry(main)> world_cup.active_players_by_position("midfielder")
+# => [#<Player:0x00007f936c035eb0...>]
 ```
 
 ## Iteration 4
@@ -155,59 +138,49 @@ pry(main)> world_cup.active_players_by_position(:forward)
 Use TDD to update your WorldCup class so that it responds to the following interaction pattern:
 
 ```ruby
-pry(main)> require './lib/player'
+pry(main)> require './lib/world_cup'
 # => true
 
 pry(main)> require './lib/team'
 # => true
 
-pry(main)> require './lib/world_cup'
+pry(main)> require './lib/player'
 # => true
 
-pry(main)> mbappe = Player.new("Kylian Mbappe", :forward)
-# => #<Player:0x00007ff1160f9c40...>
-
-pry(main)> griezmann = Player.new("Antoine Griezmann", :forward)
-# => #<Player:0x00007ff11690db48...>
-
-pry(main)> pogba = Player.new("Paul Pogba", :midfielder)
-# => #<Player:0x00007ff1168cca08...>
-
 pry(main)> france = Team.new("France")
-# => #<Team:0x00007ff1158981a0...>
+# => #<Team:0x00007f936a313698...>
+
+pry(main)> mbappe = Player.new({name: "Kylian Mbappe", position: "forward"})    
+# => #<Player:0x00007f936a9168b0...>
+
+pry(main)> pogba = Player.new({name: "Paul Pogba", position: "midfielder"})    
+# => #<Player:0x00007f936c035eb0...>
 
 pry(main)> france.add_player(mbappe)    
 
-pry(main)> france.add_player(griezmann)    
-
 pry(main)> france.add_player(pogba)    
 
-pry(main)> modric = Player.new("Luka Modric", :midfielder)
-# => #<Player:0x00007ff116102688...>
+pry(main)> croatia = Team.new("Croatia")    
+# => #<Team:0x00007f936a3afea8...>
 
-pry(main)> perisic = Player.new("Ivan Perisic", :forward)    
-# => #<Player:0x00007ff1160c2358...>
+pry(main)> modric = Player.new({name: "Luka Modric", position: "midfielder"})    
+# => #<Player:0x00007f936a3595f8...>
 
-pry(main)> vida = Player.new("Domagoj Vida", :defender)    
-# => #<Player:0x00007ff11590da68...>
-
-pry(main)> croatia = Team.new("Croatia")
-# => #<Team:0x00007ff1159db030...>
+pry(main)> vida = Player.new({name: "Domagoj Vida", position: "defender"})    
+# => #<Player:0x00007f936a318f08...>
 
 pry(main)> croatia.add_player(modric)    
-
-pry(main)> croatia.add_player(perisic)    
 
 pry(main)> croatia.add_player(vida)    
 
 pry(main)> world_cup = WorldCup.new(2018, [france, croatia])    
-# => #<WorldCup:0x00007ff116142ad0...>
+# => #<WorldCup:0x00007f936a010d10...>
 
-pry(main)> world_cup.all_players_by_position
+world_cup.all_players_by_position
 # =>
-# {
-#  :forward => [#<Player:0x00007ff1160f9c40...>, #<Player:0x00007ff11690db48...>, <Player:0x00007ff1160c2358...>],
-#  :midfielder => [#<Player:0x00007ff1168cca08...>, #<Player:0x00007ff116102688...>],
-#  :defender => [#<Player:0x00007ff11590da68...>]
-# }
+#   {
+#     "forward" => [#<Player:0x00007ffb3a8a8fd0...>],
+#     "midfielder" => [#<Player:0x00007ffb39a2dd48...>, #<Player:0x00007ffb3a054730...>],
+#     "defender" => [#<Player:0x00007ffb3a8dbb38...>]
+#   }
 ```
